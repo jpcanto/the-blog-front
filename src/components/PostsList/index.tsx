@@ -4,7 +4,7 @@ import clsx from "clsx";
 import { PostSummary } from "../PostSummary";
 
 export async function PostsList() {
-  const posts = await postRepository.findAll();
+  const posts = await postRepository.findAllPublished();
 
   return (
     <div
