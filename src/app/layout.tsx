@@ -4,7 +4,10 @@ import { Container } from "@/components/Container";
 import { Header } from "@/components/Header";
 
 export const metadata: Metadata = {
-  title: "The blog",
+  title: {
+    default: "The blog",
+    template: "%s | The blog",
+  },
 };
 
 type RootLayoutProps = {
