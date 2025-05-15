@@ -1,9 +1,9 @@
-import { PostsList } from "@/components/PostsList";
+import { PostsList } from "@/components/Post/PostsList";
 import { SpinLoader } from "@/components/SpinLoader";
 import { Suspense } from "react";
 import { Container } from "@/components/Container";
 import { Header } from "@/components/Header";
-import { PostFeatured } from "@/components/PostFeatured";
+import { PostFeatured } from "@/components/Post/PostFeatured";
 
 export default async function HomePage() {
   return (
