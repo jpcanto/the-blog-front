@@ -1,7 +1,7 @@
 import { postRepository } from "@/repositories/post";
 import { PostCoverImage } from "../PostCoverImage";
-import { PostHeading } from "../PostHeading";
 import clsx from "clsx";
+import { PostSummary } from "../PostSummary";
 
 export async function PostsList() {
   const posts = await postRepository.findAll();
@@ -33,18 +33,13 @@ export async function PostsList() {
               priority={true}
             />
 
-            <div className={clsx("flex flex-col gap-2", "sm:justify-center")}>
-              <time
-                dateTime={post.createdAt}
-                className="block text-sm/tight text-slate-600"
-              >
-                {post.createdAt}
-              </time>
-              <PostHeading as="h2" url={postLink}>
-                {post.title}
-              </PostHeading>
-              <p>{post.excerpt}</p>
-            </div>
+            <PostSummary
+              postHeading="h2"
+              postLink={postLink}
+              createdAt={post.createdAt}
+              title={post.title}
+              excerpt={post.excerpt}
+            />
           </div>
         );
       })}

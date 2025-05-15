@@ -1,6 +1,6 @@
 import clsx from "clsx";
-import { PostHeading } from "../PostHeading";
 import { PostCoverImage } from "../PostCoverImage";
+import { PostSummary } from "../PostSummary";
 
 export function PostFeatured() {
   const slug = "";
@@ -23,24 +23,13 @@ export function PostFeatured() {
         }}
         priority={true}
       />
-      <div className={clsx("flex flex-col gap-2", "sm:justify-center")}>
-        <time
-          dateTime="2025-05-15"
-          className="block text-sm/tight text-slate-600"
-        >
-          2025-05-15
-        </time>
-        <PostHeading as="h1" url={postLink}>
-          Lorem Ipsum
-        </PostHeading>
-        <p>
-          Lorem Ipsum is simply dummy text of the printing and typesetting
-          industry. Lorem Ipsum has been the industry's standard dummy text ever
-          since the 1500s, when an unknown printer took a galley of type and
-          scrambled it to make a type specimen book. It has survived not only
-          five centuries, but also the leap into electronic typesetting,
-        </p>
-      </div>
+      <PostSummary
+        postHeading="h1"
+        postLink={postLink}
+        createdAt="2025-05-15"
+        title="Lorem Ipsum"
+        excerpt="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
+      />
     </section>
   );
 }
