@@ -1,10 +1,13 @@
 import clsx from "clsx";
 import { PostCoverImage } from "../PostCoverImage";
 import { PostSummary } from "../PostSummary";
+import { postRepository } from "@/repositories/post";
 
-export function PostFeatured() {
-  const slug = "";
-  const postLink = `/post/${slug}`;
+export async function PostFeatured() {
+  const posts = await postRepository.findAllPublished();
+  const post = posts[0];
+
+  const postLink = `/post/${post.slug}`;
 
   return (
     <section
@@ -12,8 +15,8 @@ export function PostFeatured() {
     >
       <PostCoverImage
         imageProps={{
-          src: "/images/image_0.png",
-          alt: "Título do post",
+          src: post.coverImageUrl,
+          alt: post.title,
           width: 1200,
           height: 720,
           priority: true,
@@ -26,9 +29,9 @@ export function PostFeatured() {
       <PostSummary
         postHeading="h1"
         postLink={postLink}
-        createdAt="2025-05-15"
-        title="Lorem Ipsum"
-        excerpt="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
+        createdAt={post.createdAt}
+        title={post.title}
+        excerpt={post.excerpt}
       />
     </section>
   );

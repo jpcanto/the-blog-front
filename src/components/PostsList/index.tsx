@@ -14,7 +14,7 @@ export async function PostsList() {
         "lg:grid-cols-3"
       )}
     >
-      {posts.map((post) => {
+      {posts.slice(1).map((post) => {
         const postLink = `/post/${post.slug}`;
 
         return (
