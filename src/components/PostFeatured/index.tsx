@@ -1,10 +1,10 @@
 import clsx from "clsx";
 import { PostCoverImage } from "../PostCoverImage";
 import { PostSummary } from "../PostSummary";
-import { postRepository } from "@/repositories/post";
+import { findAllPublishedPosts } from "@/lib/post/queries";
 
 export async function PostFeatured() {
-  const posts = await postRepository.findAllPublished();
+  const posts = await findAllPublishedPosts();
   const post = posts[0];
 
   const postLink = `/post/${post.slug}`;
