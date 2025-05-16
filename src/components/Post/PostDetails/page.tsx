@@ -2,6 +2,7 @@ import { findPostBySlugCached } from "@/lib/post/queries";
 import Image from "next/image";
 import { PostHeading } from "../PostHeading";
 import { PostDate } from "../PostDate";
+import { SafeMarkdown } from "@/components/SafeMarkdown";
 type PostDetailsPageProps = {
   slug: string;
 };
@@ -28,7 +29,7 @@ export default async function PostDetails({ slug }: PostDetailsPageProps) {
 
       <p className="text-xl text-slate-600 mb-8">{post.excerpt}</p>
 
-      <div className="">{post.content}</div>
+      <SafeMarkdown markdown={post.content} />
     </article>
   );
 }
