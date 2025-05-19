@@ -1,4 +1,4 @@
-import { findPostBySlugCached } from "@/lib/post/queries";
+import { findPublishedPostBySlugCached } from "@/lib/post/queries/public";
 import Image from "next/image";
 import { PostHeading } from "../PostHeading";
 import { PostDate } from "../PostDate";
@@ -8,7 +8,7 @@ type PostDetailsPageProps = {
 };
 
 export default async function PostDetails({ slug }: PostDetailsPageProps) {
-  const post = await findPostBySlugCached(slug);
+  const post = await findPublishedPostBySlugCached(slug);
 
   return (
     <article className="mb-16">
