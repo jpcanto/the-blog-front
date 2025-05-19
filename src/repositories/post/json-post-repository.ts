@@ -1,7 +1,7 @@
 import { PostModel } from "@/models/post/post-model";
 import { PostRepository } from "./post-repository";
 import { resolve } from "path";
-import { readFile } from "fs/promises";
+import { readFile, writeFile } from "fs/promises";
 import { SIMULATE_WAIT_IN_MS } from "@/lib/constants";
 import { asyncDelay } from "@/utils/async-delay";
 
@@ -61,5 +61,21 @@ export class JsonPostRepository implements PostRepository {
     }
 
     return post;
+  }
+
+  async delete(id: string): Promise<void> {
+    await this.simulateWait();
+    const posts = await this.readFromDisk();
+    const post = posts.find((post) => post.id === id);
+
+    if (!post) {
+      throw new Error(`Post not found`);
+    }
+
+    const newPosts = posts.filter((post) => post.id !== id);
+    await writeFile(
+      JSON_POSTS_FILE_PATH,
+      JSON.stringify({ posts: newPosts }, null, 2)
+    );
   }
 }

@@ -2,9 +2,21 @@ import clsx from "clsx";
 import { PostCoverImage } from "../PostCoverImage";
 import { PostSummary } from "../PostSummary";
 import { findAllPublishedPostsCached } from "@/lib/post/queries/public";
+import { ErrorMessage } from "@/components/ErrorMessage";
 
 export async function PostFeatured() {
   const posts = await findAllPublishedPostsCached();
+
+  if (posts.length <= 0) {
+    return (
+      <ErrorMessage
+        title="Erro"
+        description="Nenhum post encontrado"
+        action={false}
+      />
+    );
+  }
+
   const post = posts[0];
 
   const postLink = `/post/${post.slug}`;

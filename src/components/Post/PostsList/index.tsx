@@ -2,9 +2,14 @@ import { PostCoverImage } from "../PostCoverImage";
 import clsx from "clsx";
 import { PostSummary } from "../PostSummary";
 import { findAllPublishedPostsCached } from "@/lib/post/queries/public";
+import { ErrorMessage } from "@/components/ErrorMessage";
 
 export async function PostsList() {
   const posts = await findAllPublishedPostsCached();
+
+  if (posts.length <= 1) {
+    return null;
+  }
 
   return (
     <div
